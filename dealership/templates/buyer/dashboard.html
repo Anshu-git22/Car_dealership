@@ -1,0 +1,129 @@
+<h1>Buyer Dashboard</h1>{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="mb-10">
+        <p class="text-blue-400 font-bold">Buyer Dashboard</p>
+        <h1 class="text-4xl md:text-6xl font-black mt-2">
+            Welcome, {{ user.username }}
+        </h1>
+        <p class="text-slate-400 mt-3">
+            Manage your bookings, wishlist, and explore premium cars.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+        <a href="{% url 'my_bookings' %}"
+           class="bg-white/10 border border-white/10 rounded-3xl p-7 hover:-translate-y-2 transition shadow-xl hover:shadow-blue-500/20">
+            <div class="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h2 class="text-2xl font-black">My Bookings</h2>
+            <p class="text-slate-400 mt-2">View your car booking status.</p>
+        </a>
+
+        <a href="{% url 'my_wishlist' %}"
+           class="bg-white/10 border border-white/10 rounded-3xl p-7 hover:-translate-y-2 transition shadow-xl hover:shadow-pink-500/20">
+            <div class="w-14 h-14 rounded-2xl bg-pink-600 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <h2 class="text-2xl font-black">Wishlist</h2>
+            <p class="text-slate-400 mt-2">Saved cars you liked.</p>
+        </a>
+
+        <a href="{% url 'home' %}"
+           class="bg-white/10 border border-white/10 rounded-3xl p-7 hover:-translate-y-2 transition shadow-xl hover:shadow-green-500/20">
+            <div class="w-14 h-14 rounded-2xl bg-green-600 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-car"></i>
+            </div>
+            <h2 class="text-2xl font-black">Explore Cars</h2>
+            <p class="text-slate-400 mt-2">Find your next dream car.</p>
+        </a>
+
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <div class="lg:col-span-2 bg-white/10 border border-white/10 rounded-[32px] p-8">
+
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <p class="text-blue-400 font-semibold">Marketplace</p>
+                    <h2 class="text-3xl font-black">Recommended Actions</h2>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+
+                <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Search Premium Cars</h3>
+                            <p class="text-sm text-slate-400">Use filters to find cars by budget, fuel, city, and brand.</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'home' %}" class="text-blue-400 font-bold hover:underline">Open</a>
+                </div>
+
+                <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-600 flex items-center justify-center">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Review Wishlist</h3>
+                            <p class="text-sm text-slate-400">Compare your saved cars before booking.</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'my_wishlist' %}" class="text-pink-400 font-bold hover:underline">Open</a>
+                </div>
+
+                <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Track Bookings</h3>
+                            <p class="text-sm text-slate-400">Check approval, payment, and delivery status.</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'my_bookings' %}" class="text-green-400 font-bold hover:underline">Open</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[32px] p-8 shadow-2xl shadow-blue-500/20">
+
+            <div class="w-16 h-16 rounded-3xl bg-white/20 flex items-center justify-center text-3xl mb-6">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+
+            <h2 class="text-3xl font-black leading-tight">
+                Premium Buyer Experience
+            </h2>
+
+            <p class="text-blue-100 mt-4 leading-relaxed">
+                Save cars, book easily, make test payments, and manage everything from your dashboard.
+            </p>
+
+            <a href="{% url 'home' %}"
+               class="inline-block mt-8 bg-white text-black px-6 py-3 rounded-2xl font-bold hover:scale-105 transition">
+                Explore Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

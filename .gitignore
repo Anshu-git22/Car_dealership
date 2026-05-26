@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+myvenv/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Static Files
+staticfiles/
+
+# Media Files
+media/
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Secret Keys
+secret_key.py
+
+# Razorpay / Payment Keys
+*.pem
+*.key
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Migrations (optional)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Node Modules (if React/Tailwind used)
+node_modules/
+
+# Tailwind Build Files
+*.map
+
+# Coverage
+.coverage
+htmlcov/
+
+# Temporary Files
+*.tmp
+*.bak

@@ -1,0 +1,23 @@
+<h1>Select Your Role</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>
+        <input type="radio" name="user_type" value="buyer" required>
+        Buyer
+    </label>
+
+    <br>
+
+    <label>
+        <input type="radio" name="user_type" value="seller" required>
+        Seller
+    </label>
+
+    <br><br>
+
+    <button type="submit">
+        Continue
+    </button>
+</form>

@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div>
+            <p class="text-blue-400 font-bold">Seller Panel</p>
+            <h1 class="text-4xl md:text-6xl font-black mt-2">
+                Welcome, {{ user.username }}
+            </h1>
+            <p class="text-slate-400 mt-3">
+                Manage your cars, bookings, sales, and dealership activity.
+            </p>
+        </div>
+
+        <a href="{% url 'add_car' %}"
+           class="bg-blue-600 hover:bg-blue-700 px-7 py-4 rounded-2xl font-bold transition hover:scale-105 shadow-lg shadow-blue-500/20">
+            <i class="fa-solid fa-plus mr-2"></i>
+            Add New Car
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+
+        <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-car"></i>
+            </div>
+            <p class="text-slate-400 text-sm">Total Cars</p>
+            <h2 class="text-4xl font-black mt-1">{{ cars.count }}</h2>
+        </div>
+
+        <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
+            <div class="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <p class="text-slate-400 text-sm">Active Listings</p>
+            <h2 class="text-4xl font-black mt-1">{{ cars.count }}</h2>
+        </div>
+
+        <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
+            <div class="w-12 h-12 rounded-2xl bg-pink-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <p class="text-slate-400 text-sm">Bookings</p>
+            <h2 class="text-4xl font-black mt-1">0</h2>
+        </div>
+
+        <div class="bg-white/10 border border-white/10 rounded-3xl p-6">
+            <div class="w-12 h-12 rounded-2xl bg-yellow-500 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <p class="text-slate-400 text-sm">Performance</p>
+            <h2 class="text-4xl font-black mt-1">98%</h2>
+        </div>
+
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-8">
+
+        <aside class="lg:col-span-1 bg-white/10 border border-white/10 rounded-[32px] p-6 h-fit">
+
+            <h2 class="text-xl font-black mb-6">Seller Menu</h2>
+
+            <div class="space-y-3">
+
+                <a href="{% url 'seller_dashboard' %}"
+                   class="flex items-center gap-3 bg-blue-600 px-4 py-3 rounded-2xl font-bold">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+
+                <a href="{% url 'add_car' %}"
+                   class="flex items-center gap-3 bg-white/5 hover:bg-white/10 px-4 py-3 rounded-2xl transition">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Car
+                </a>
+
+                <a href="{% url 'seller_bookings' %}"
+                   class="flex items-center gap-3 bg-white/5 hover:bg-white/10 px-4 py-3 rounded-2xl transition">
+                    <i class="fa-solid fa-book"></i>
+                    Bookings
+                </a>
+
+                <a href="{% url 'profile' %}"
+                   class="flex items-center gap-3 bg-white/5 hover:bg-white/10 px-4 py-3 rounded-2xl transition">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+
+            </div>
+
+        </aside>
+
+        <div class="lg:col-span-3 bg-white/10 border border-white/10 rounded-[32px] p-6 md:p-8">
+
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <p class="text-blue-400 font-semibold">Inventory</p>
+                    <h2 class="text-3xl font-black">My Listed Cars</h2>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                {% for car in cars %}
+
+                <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:-translate-y-2 transition shadow-xl hover:shadow-blue-500/20">
+
+                    {% if car.image %}
+                        <img src="{{ car.image.url }}" class="w-full h-52 object-cover">
+                    {% else %}
+                        <div class="w-full h-52 bg-slate-800 flex items-center justify-center text-slate-400">
+                            No Image
+                        </div>
+                    {% endif %}
+
+                    <div class="p-5">
+
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl font-black">
+                                    {{ car.brand }} {{ car.model_name }}
+                                </h3>
+
+                                <p class="text-slate-400 mt-1">
+                                    {{ car.year }} • {{ car.fuel_type }} • {{ car.city }}
+                                </p>
+                            </div>
+
+                            {% if car.is_sold %}
+                                <span class="bg-red-500/20 text-red-400 text-xs px-3 py-1 rounded-full">
+                                    Sold
+                                </span>
+                            {% else %}
+                                <span class="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full">
+                                    Active
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <p class="text-3xl font-black text-blue-400 mt-4">
+                            ₹{{ car.price }}
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-3 mt-5">
+
+    <a href="{% url 'edit_car' car.id %}"
+       class="text-center bg-blue-600 hover:bg-blue-700 py-3 rounded-xl font-bold transition hover:scale-105 shadow-lg shadow-blue-500/20">
+        <i class="fa-solid fa-pen-to-square mr-2"></i>
+        Edit
+    </a>
+
+    <a href="{% url 'delete_car' car.id %}"
+       class="text-center bg-red-500 hover:bg-red-600 py-3 rounded-xl font-bold transition hover:scale-105 shadow-lg shadow-red-500/20">
+        <i class="fa-solid fa-trash mr-2"></i>
+        Delete
+    </a>
+
+</div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <div class="md:col-span-2 text-center py-20">
+                    <div class="w-20 h-20 mx-auto rounded-3xl bg-white/10 flex items-center justify-center text-4xl mb-5">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <h2 class="text-3xl font-black">No Cars Added Yet</h2>
+                    <p class="text-slate-400 mt-3">Start by adding your first car listing.</p>
+
+                    <a href="{% url 'add_car' %}"
+                       class="inline-block mt-6 bg-blue-600 hover:bg-blue-700 px-7 py-3 rounded-2xl font-bold transition">
+                        Add Car
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

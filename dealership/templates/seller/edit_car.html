@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="max-w-6xl mx-auto px-6 py-14">
+
+    <div class="mb-10">
+        <p class="text-yellow-400 font-bold">Update Listing</p>
+
+        <h1 class="text-4xl md:text-6xl font-black mt-2">
+            Edit Car
+        </h1>
+
+        <p class="text-slate-400 mt-3">
+            Update your car details, pricing, and images.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <div class="lg:col-span-2 bg-white/10 border border-white/10 rounded-[32px] p-8 shadow-2xl shadow-yellow-500/10 backdrop-blur-2xl">
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div>
+
+                        <label class="block mb-2 text-sm font-semibold text-slate-300">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <p class="text-xs text-slate-500 mt-1">
+                                {{ field.help_text }}
+                            </p>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <p class="text-red-400 text-sm mt-2">
+                                {{ field.errors }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+
+                    <button type="submit"
+                            class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black py-4 rounded-2xl font-black transition hover:scale-[1.02] shadow-lg shadow-yellow-500/20">
+
+                        <i class="fa-solid fa-floppy-disk mr-2"></i>
+
+                        Save Changes
+
+                    </button>
+
+                    <a href="{% url 'seller_dashboard' %}"
+                       class="flex-1 text-center border border-white/10 bg-white/5 hover:bg-white/10 py-4 rounded-2xl font-bold transition">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="space-y-6">
+
+            <div class="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-[32px] p-8 shadow-2xl shadow-yellow-500/20">
+
+                <div class="w-16 h-16 rounded-3xl bg-white/20 flex items-center justify-center text-3xl mb-6">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+
+                <h2 class="text-3xl font-black">
+                    Edit Listing
+                </h2>
+
+                <p class="text-yellow-100 mt-4 leading-relaxed">
+                    Keep your listing updated with accurate pricing, specifications,
+                    and high quality images.
+                </p>
+
+            </div>
+
+            {% if car.image %}
+
+            <div class="bg-white/10 border border-white/10 rounded-[32px] overflow-hidden">
+
+                <img src="{{ car.image.url }}"
+                     class="w-full h-64 object-cover">
+
+                <div class="p-5">
+
+                    <h3 class="text-2xl font-black">
+                        {{ car.brand }} {{ car.model_name }}
+                    </h3>
+
+                    <p class="text-slate-400 mt-2">
+                        {{ car.year }} • {{ car.city }}
+                    </p>
+
+                    <p class="text-3xl font-black text-yellow-400 mt-4">
+                        ₹{{ car.price }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+            <div class="bg-white/10 border border-white/10 rounded-[32px] p-7">
+
+                <h3 class="text-xl font-black mb-5">
+                    Quick Tips
+                </h3>
+
+                <div class="space-y-4 text-slate-300">
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Keep car details accurate
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Update pricing regularly
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Add premium car images
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Mention real specifications
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

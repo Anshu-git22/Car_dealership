@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="min-h-screen flex items-center justify-center px-6 py-16">
+
+    <div class="max-w-3xl w-full text-center bg-white/10 border border-white/10 rounded-[40px] p-10 md:p-16 shadow-2xl shadow-green-500/10 backdrop-blur-2xl">
+
+        <div class="w-28 h-28 mx-auto rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-6xl mb-8">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <p class="text-green-400 font-bold mb-3">
+            Payment Completed
+        </p>
+
+        <h1 class="text-4xl md:text-6xl font-black leading-tight">
+            Booking Successful!
+        </h1>
+
+        <p class="text-slate-300 text-lg mt-6 leading-relaxed">
+            Your car booking payment has been completed successfully.
+            You can now check your booking details from your dashboard.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-10">
+
+            <a href="{% url 'my_bookings' %}"
+               class="bg-green-600 hover:bg-green-700 py-4 rounded-2xl font-bold transition hover:scale-105 shadow-lg shadow-green-500/20">
+                View My Bookings
+            </a>
+
+            <a href="{% url 'home' %}"
+               class="bg-white/10 border border-white/10 hover:bg-white/20 py-4 rounded-2xl font-bold transition">
+                Explore More Cars
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

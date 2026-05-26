@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-6 py-14">
+
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+        <div class="space-y-6">
+
+            <div class="bg-white/10 border border-white/10 rounded-[32px] overflow-hidden shadow-2xl shadow-blue-500/10">
+
+                {% if car.image %}
+                    <img src="{{ car.image.url }}"
+                         class="w-full h-[500px] object-cover hover:scale-105 transition duration-700">
+                {% else %}
+                    <div class="w-full h-[500px] bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+                        No Image Available
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+
+                <div class="bg-white/10 border border-white/10 rounded-3xl p-5 text-center">
+
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600 mx-auto flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+
+                    <p class="text-slate-400 text-sm">KM Driven</p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.km_driven }}
+                    </h3>
+
+                </div>
+
+                <div class="bg-white/10 border border-white/10 rounded-3xl p-5 text-center">
+
+                    <div class="w-14 h-14 rounded-2xl bg-pink-600 mx-auto flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-gas-pump"></i>
+                    </div>
+
+                    <p class="text-slate-400 text-sm">Fuel Type</p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.fuel_type }}
+                    </h3>
+
+                </div>
+
+                <div class="bg-white/10 border border-white/10 rounded-3xl p-5 text-center">
+
+                    <div class="w-14 h-14 rounded-2xl bg-green-600 mx-auto flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+
+                    <p class="text-slate-400 text-sm">Transmission</p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.transmission }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="flex items-center gap-3 mb-4">
+
+                <span class="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold">
+                    Available
+                </span>
+
+                <span class="bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-bold">
+                    Verified Dealer
+                </span>
+
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-black leading-tight">
+
+                {{ car.brand }} {{ car.model_name }}
+
+            </h1>
+
+            <p class="text-slate-400 text-lg mt-4">
+
+                {{ car.year }} • {{ car.city }}
+
+            </p>
+
+            <div class="mt-8">
+
+                <h2 class="text-5xl font-black text-blue-400">
+
+                    ₹{{ car.price }}
+
+                </h2>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-10">
+
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-5">
+
+                    <p class="text-slate-400 text-sm">
+                        Brand
+                    </p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.brand }}
+                    </h3>
+
+                </div>
+
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-5">
+
+                    <p class="text-slate-400 text-sm">
+                        Model Year
+                    </p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.year }}
+                    </h3>
+
+                </div>
+
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-5">
+
+                    <p class="text-slate-400 text-sm">
+                        Fuel Type
+                    </p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.fuel_type }}
+                    </h3>
+
+                </div>
+
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-5">
+
+                    <p class="text-slate-400 text-sm">
+                        City
+                    </p>
+
+                    <h3 class="text-2xl font-black mt-2">
+                        {{ car.city }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="bg-white/10 border border-white/10 rounded-[32px] p-7 mt-10">
+
+                <h2 class="text-3xl font-black mb-5">
+                    Description
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed text-lg">
+
+                    {{ car.description }}
+
+                </p>
+
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-4 mt-10">
+
+                <a href="{% url 'book_car' car.id %}"
+                   class="text-center bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-black transition hover:scale-105 shadow-lg shadow-blue-500/20">
+
+                    <i class="fa-solid fa-calendar-check mr-2"></i>
+
+                    Book Now
+
+                </a>
+
+                <a href="{% url 'add_to_wishlist' car.id %}"
+                   class="text-center bg-pink-600 hover:bg-pink-700 py-4 rounded-2xl font-black transition hover:scale-105 shadow-lg shadow-pink-500/20">
+
+                    <i class="fa-solid fa-heart mr-2"></i>
+
+                    Wishlist
+
+                </a>
+
+                <a href="#"
+                   class="text-center bg-white/10 border border-white/10 hover:bg-white/20 py-4 rounded-2xl font-black transition">
+
+                    <i class="fa-solid fa-phone mr-2"></i>
+
+                    Contact
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

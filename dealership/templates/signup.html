@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="min-h-screen flex items-center justify-center px-6 py-16">
+
+    <div class="w-full max-w-6xl grid lg:grid-cols-2 gap-10 items-center">
+
+        <div class="bg-white/10 border border-white/10 rounded-[32px] p-8 md:p-10 shadow-2xl shadow-blue-500/10 backdrop-blur-2xl">
+
+            <div class="mb-8">
+                <p class="text-blue-400 font-bold mb-2">Join AutoVerse</p>
+                <h2 class="text-4xl font-black">Create Account</h2>
+                <p class="text-slate-400 mt-2">Start buying or selling premium cars today.</p>
+            </div>
+
+            <form method="POST" class="space-y-5">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold text-slate-300">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <p class="text-xs text-slate-500 mt-1">
+                                {{ field.help_text }}
+                            </p>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <p class="text-red-400 text-sm mt-2">
+                                {{ field.errors }}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl font-bold transition hover:scale-[1.02] shadow-lg shadow-blue-500/20">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-slate-400">
+                    Already have an account?
+                    <a href="{% url 'login' %}" class="text-blue-400 font-bold hover:underline">
+                        Login
+                    </a>
+                </p>
+            </div>
+
+            <div class="my-6 flex items-center gap-4">
+                <div class="h-px flex-1 bg-white/10"></div>
+                <span class="text-slate-500 text-sm">OR</span>
+                <div class="h-px flex-1 bg-white/10"></div>
+            </div>
+
+            <a href="/accounts/google/login/"
+               class="w-full flex items-center justify-center gap-3 border border-white/10 bg-white/5 hover:bg-white/10 py-3 rounded-2xl font-bold transition">
+                <i class="fa-brands fa-google"></i>
+                Signup With Google
+            </a>
+
+        </div>
+
+        <div class="hidden lg:block">
+            <p class="text-blue-400 font-bold mb-4">Premium Marketplace</p>
+
+            <h1 class="text-6xl font-black leading-tight mb-6">
+                Buy And Sell Cars With Confidence
+            </h1>
+
+            <p class="text-slate-300 text-lg leading-relaxed">
+                Create your account and access verified car listings, seller tools,
+                bookings, wishlist, and secure Razorpay test payments.
+            </p>
+
+            <div class="mt-10 space-y-5">
+                <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Verified Listings</h3>
+                        <p class="text-sm text-slate-400">Explore trusted car deals easily.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <div class="w-12 h-12 rounded-2xl bg-pink-600 flex items-center justify-center">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Smart Wishlist</h3>
+                        <p class="text-sm text-slate-400">Save cars and view them anytime.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <div class="w-12 h-12 rounded-2xl bg-green-600 flex items-center justify-center">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Easy Booking</h3>
+                        <p class="text-sm text-slate-400">Book cars with smooth payment flow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

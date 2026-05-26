@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="max-w-6xl mx-auto px-6 py-14">
+
+    <div class="mb-10">
+        <p class="text-blue-400 font-bold">Seller Inventory</p>
+
+        <h1 class="text-4xl md:text-6xl font-black mt-2">
+            Add New Car
+        </h1>
+
+        <p class="text-slate-400 mt-3">
+            Create a premium car listing for buyers.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <div class="lg:col-span-2 bg-white/10 border border-white/10 rounded-[32px] p-8 shadow-2xl shadow-blue-500/10 backdrop-blur-2xl">
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+
+                {% csrf_token %}
+
+                {% for field in form %}
+
+                    <div>
+
+                        <label class="block mb-2 text-sm font-semibold text-slate-300">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <p class="text-xs text-slate-500 mt-1">
+                                {{ field.help_text }}
+                            </p>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <p class="text-red-400 text-sm mt-2">
+                                {{ field.errors }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+
+                    <button type="submit"
+                            class="flex-1 bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-bold transition hover:scale-[1.02] shadow-lg shadow-blue-500/20">
+
+                        <i class="fa-solid fa-plus mr-2"></i>
+
+                        Add Car
+
+                    </button>
+
+                    <a href="{% url 'seller_dashboard' %}"
+                       class="flex-1 text-center border border-white/10 bg-white/5 hover:bg-white/10 py-4 rounded-2xl font-bold transition">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="space-y-6">
+
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[32px] p-8 shadow-2xl shadow-blue-500/20">
+
+                <div class="w-16 h-16 rounded-3xl bg-white/20 flex items-center justify-center text-3xl mb-6">
+
+                    <i class="fa-solid fa-car-side"></i>
+
+                </div>
+
+                <h2 class="text-3xl font-black">
+                    Premium Listing
+                </h2>
+
+                <p class="text-blue-100 mt-4 leading-relaxed">
+                    Add proper details and premium quality images to attract more buyers.
+                </p>
+
+            </div>
+
+            <div class="bg-white/10 border border-white/10 rounded-[32px] p-7">
+
+                <h3 class="text-xl font-black mb-5">
+                    Seller Tips
+                </h3>
+
+                <div class="space-y-4 text-slate-300">
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Add clear front image
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Mention real car condition
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Keep pricing realistic
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Add proper city and fuel type
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
